@@ -21,7 +21,13 @@ module.exports = {
 	},
 
 	doctors: function(req, res) {
-		res.render("doctors");
+
+		user.findOne({aid:req.params.id},function(err,result){
+			if(err) throw err;
+			else{
+				console.log(result)
+				res.render("doctors",{user:result}) };
+		})
 	},
 	list  : function(req,res){
 		res.render("list.ejs");
@@ -59,26 +65,27 @@ module.exports = {
 	Addprescription:function(req,res){
 		//asuming everything in req.body
 		var pres = req.body;
-		var prescription = {
-			prescriptionId: pres.prescriptionId,
-			doctorId: pres.doctorId,
-			doctor_name: pres.doctor_name,
-			hospital_name: pres.hospital_name,
-			prescriptionDetails: pres.prescriptionDetails,
-			disease : pres.disease,
-		}
-	user.findOne({aid: req.params.id}).exec(function(err,user){
-		console.log(user);
-		user.prescription.push(prescription);
-		user.save(function(err,user){
-			if(err){
-				throw err;
-			}
-			else{
-				res.redirect("/prescription");
-			}
-		})
-	})
+		res.send(pres);
+	// 	var prescription = {
+	// 		prescriptionId: pres.prescriptionId,
+	// 		doctorId: pres.doctorId,
+	// 		doctor_name: pres.doctor_name,
+	// 		hospital_name: pres.hospital_name,
+	// 		prescriptionDetails: pres.prescriptionDetails,
+	// 		disease : pres.disease,
+	// 	}
+	// user.findOne({aid: req.params.id}).exec(function(err,user){
+	// 	console.log(user);
+	// 	user.prescription.push(prescription);
+	// 	user.save(function(err,user){
+	// 		if(err){
+	// 			throw err;
+	// 		}
+	// 		else{
+	// 			res.redirect("/prescription");
+	// 		}
+	// 	})
+	// })
 
 	},
 	addreport: function(req,res){
@@ -105,7 +112,14 @@ module.exports = {
 		})
 	})
 
+	},
+	verify: function(req,res){
+		res.render("verify.ejs",{id:req.params.id});
+	},
+	Verify:function(req,res){
+		//asuming everything in req.body
+		console.log(req.files);
+		var filename = req.files[0].filename; 
+		
 	}
-
-
 }

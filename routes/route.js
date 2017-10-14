@@ -8,7 +8,7 @@ var routes = {
 }
 
 router.get("/", routes.views.index.landing);
-router.get("/doctors", routes.views.index.doctors)
+router.get("/doctors/:id", routes.views.index.doctors)
 
 router.get("/login",routes.views.index.login);
 router.get("/store", routes.views.index.store);
@@ -23,6 +23,9 @@ router.get("/addprescription/:id", routes.views.index.addprescription);
 router.post("/addprescription/:id", routes.views.index.Addprescription);
 router.get("/addreport/:id", routes.views.index.addreport);
 router.post("/addreport/:id",upload.any(),routes.views.index.Addreport);
+
+//Verify Image
+router.get("/verify/:id", routes.views.index.verify);
 
 
 module.exports = router;
