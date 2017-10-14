@@ -1,0 +1,15 @@
+ <% include ./partials/header %>
+
+
+<h1>Prescription Page.</h1>
+<form class="form-control" action="/addprescription" method="POST">
+	<label>Doctor Id</label>
+	<input type="text" name="hospital_name">
+	<label>Prescription</label>
+	<textarea name="prescription">This is the prescription.</textarea> 
+	<label>Disease</label>
+	<input type="text" name="Disease[]">
+	<button>Submit</button>
+</form>
+
+<% include ./partials/footer %>

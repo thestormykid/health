@@ -7,6 +7,7 @@ var express 		= require('express'),
 	request			= require('request'),
 	methodOverride  = require('method-override'),
 	multer 			= require('multer')
+    user 			= require('./models/user'),
     upload      	= multer({ dest: 'views/campgrounds' });
 
 	port 			= 3000,
@@ -32,26 +33,29 @@ mongoose.connection.openUri("mongodb://sjv97mhjn:1997@ds119685.mlab.com:19685/he
 // });
 
 app.use("/", routes);
-
+app.get("/upload",function(req,res){
+	res.render("file.ejs");
+})
 app.post("/upload",upload.any(),function(req,res,next){
-    var name = req.body.name;
-    var image = req.files[0].path.replace("views/campgrounds/","");
-    var desc = req.body.description;
-    var author = {
-        id : req.user._id,
-        username : req.user.username
-    };
+    console.log(req.files);
+    // //var name = req.body.name;
+    // var image = req.files[0].path.replace("views/campgrounds/","");
+    // var desc = req.body.description;
+    // var author = {
+    //     id : req.user._id,
+    //     username : req.user.username
+    // };
 
-    var newCampground = {name: name, image: image, description: desc, author: author}
-    // Create a new campground and save to DB
-    Campground.create(newCampground, function(err, newlyCreated){
-        if(err){
-            console.log(err);
-        } else {
-            //redirect back to campgrounds page
-            res.redirect("/campgrounds");
-        }
-    });
+    // var newCampground = {name: name, image: image, description: desc, author: author}
+    // // Create a new campground and save to DB
+    // Campground.create(newCampground, function(err, newlyCreated){
+    //     if(err){
+    //         console.log(err);
+    //     } else {
+    //         //redirect back to campgrounds page
+    //         res.redirect("/campgrounds");
+    //     }
+    // });
 });
 
 
