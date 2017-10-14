@@ -8,6 +8,9 @@ var routes = {
 }
 
 router.get("/", routes.views.index.landing);
+router.get("/prescription", routes.views.index.prescription);
+router.post("/prescription", routes.views.index.Prescription);
+
 // To do by sajeev or ravi.
 // router.get("/login", routes.views.index.login);
 // router.get("/logout", routes.views.index.login);
