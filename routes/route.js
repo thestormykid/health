@@ -9,10 +9,20 @@ var routes = {
 
 router.get("/", routes.views.index.landing);
 router.get("/doctors", routes.views.index.doctors)
-// To do by sajeev or ravi.
-// router.get("/login", routes.views.index.login);
-// router.get("/logout", routes.views.index.login);
-// router.get("/signup", routes.views.index.signup);
+
+router.get("/login",routes.views.index.login);
+router.get("/store", routes.views.index.store);
+router.get("/list", routes.views.index.list);
+
+//Prescription List:
+router.get("/prescription/:id", routes.views.index.prescription);
+router.get("/report/:id", routes.views.index.report);
+
+//Add Prescrription
+router.get("/addprescription/:id", routes.views.index.addprescription);
+router.post("/addprescription/:id", routes.views.index.Addprescription);
+router.get("/addreport/:id", routes.views.index.addreport);
+router.post("/addreport/:id",upload.any(),routes.views.index.Addreport);
 
 
 module.exports = router;

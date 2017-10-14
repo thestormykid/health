@@ -7,7 +7,8 @@ var express 		= require('express'),
 	request			= require('request'),
 	methodOverride  = require('method-override'),
 	multer 			= require('multer')
-    upload      	= multer({ dest: 'views/campgrounds' });
+    user 			= require('./models/user'),
+    upload      	= multer({ dest: 'public/files' });
 
 	port 			= 3000,
 
@@ -21,7 +22,9 @@ app.use(methodOverride("_method"));
 app.set("view engine", "ejs");
 
 // if we use mongo in our localhost
-mongoose.connect("mongodb://localhost/campuskart");
+//mongoose.connect("mongodb://localhost/campuskart");
+mongoose.Promise = global.Promise;
+mongoose.connection.openUri("mongodb://sjv97mhjn:1997@ds119685.mlab.com:19685/health");
 //  if we use mongolab
 // mongoose.connection.openUri("mongodb://sjv97mhjn:1997@ds151004.mlab.com:51004/campuskart");
 // mongoose.connection.on('error', (err) => {
@@ -31,26 +34,29 @@ mongoose.connect("mongodb://localhost/campuskart");
 // });
 
 app.use("/", routes);
-
+app.get("/upload",function(req,res){
+	res.render("file.ejs");
+})
 app.post("/upload",upload.any(),function(req,res,next){
-    var name = req.body.name;
-    var image = req.files[0].path.replace("views/campgrounds/","");
-    var desc = req.body.description;
-    var author = {
-        id : req.user._id,
-        username : req.user.username
-    };
+    console.log(req.files[0]);
+    // //var name = req.body.name;
+    // var image = req.files[0].path.replace("views/campgrounds/","");
+    // var desc = req.body.description;
+    // var author = {
+    //     id : req.user._id,
+    //     username : req.user.username
+    // };
 
-    var newCampground = {name: name, image: image, description: desc, author: author}
-    // Create a new campground and save to DB
-    Campground.create(newCampground, function(err, newlyCreated){
-        if(err){
-            console.log(err);
-        } else {
-            //redirect back to campgrounds page
-            res.redirect("/campgrounds");
-        }
-    });
+    // var newCampground = {name: name, image: image, description: desc, author: author}
+    // // Create a new campground and save to DB
+    // Campground.create(newCampground, function(err, newlyCreated){
+    //     if(err){
+    //         console.log(err);
+    //     } else {
+    //         //redirect back to campgrounds page
+    //         res.redirect("/campgrounds");
+    //     }
+    // });
 });
 
 
