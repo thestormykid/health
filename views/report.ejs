@@ -1,0 +1,10 @@
+<%include partials/header%>
+<h1>Report List</h1>
+<%reports.forEach(function(report){ %>
+	        <%report.Id%>
+			<%report.reportName%>
+			<%report.uploadedAt%>
+
+<%})%>
+
+<%include partials/footer%>
