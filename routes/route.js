@@ -8,6 +8,7 @@ var routes = {
 }
 
 router.get("/", routes.views.index.landing);
+router.get("/doctors", routes.views.index.doctors)
 // To do by sajeev or ravi.
 // router.get("/login", routes.views.index.login);
 // router.get("/logout", routes.views.index.login);
