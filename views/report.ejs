@@ -1,10 +1,12 @@
 <%include partials/header%>
 <h1>Report List</h1>
 <%reports.forEach(function(report){ %>
-	        <%report.Id%>
-			<%report.reportName%>
-			<%report.uploadedAt%>
-
+			<br>
+	        <%=report.reportId%><br>
+			<%=report.reportName%><br>
+			<%=report.uploadedAt%><br>
+			<a href="/files/<%=report.reportId%>">Download</a>
+			<br>
 <%})%>
 
 <%include partials/footer%>

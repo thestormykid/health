@@ -1,13 +1,13 @@
 <%include partials/header%>
 <h1>Prescription List</h1>
 <%prescription.forEach(function(pres){ %>
-	        <%pres.prescriptionId%>
-			<%pres.doctorId%>
-			<%pres.doctor_name%>
-			<%pres.hospital_name%>
-			<%pres.prescriptionDetails%>
-			<%pres.createdAt%>
-			<%pres.disease%>
+	        <%=pres.prescriptionId%>
+			<%=pres.doctorId%>
+			<%=pres.doctor_name%>
+			<%=pres.hospital_name%>
+			<%=pres.prescriptionDetails%>
+			<%=pres.createdAt%>
+			<%=pres.disease%>
 
 <%})%>
 

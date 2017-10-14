@@ -8,15 +8,19 @@ var routes = {
 }
 
 router.get("/", routes.views.index.landing);
+router.post("/login",routes.views.index.login);
+router.get("/store", routes.views.index.store);
+router.get("/list", routes.views.index.list);
+
 //Prescription List:
 router.get("/prescription/:id", routes.views.index.prescription);
 router.get("/report/:id", routes.views.index.report);
 
 //Add Prescrription
-router.get("/addprescription", routes.views.index.addprescription);
-router.post("/addprescription", routes.views.index.Addprescription);
-router.get("/addreport", routes.views.index.addreport);
-router.post("/addreport", routes.views.index.Addreport);
+router.get("/addprescription/:id", routes.views.index.addprescription);
+router.post("/addprescription/:id", routes.views.index.Addprescription);
+router.get("/addreport/:id", routes.views.index.addreport);
+router.post("/addreport/:id",upload.any(),routes.views.index.Addreport);
 
 
 // To do by sajeev or ravi.

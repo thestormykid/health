@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
-	id: String,
+	aid: String,
 	name: String,
 	age: Number,
 	Sex: String,
@@ -13,7 +13,7 @@ var userSchema = mongoose.Schema({
 			doctor_name: String,
 			hospital_name: String,
 			prescriptionDetails: String,
-			createdAt: { type: Date, default: Date().now },
+			createdAt: { type: Date, default: new Date() },
 			disease : String
 		}
 	],
@@ -21,7 +21,7 @@ var userSchema = mongoose.Schema({
 		{
 			reportId: String,
 			reportName: String,
-			uploadedAt: { type: Date ,default: Date().now }
+			uploadedAt: { type: Date ,default: new Date() }
 		}
 	]
 

@@ -8,7 +8,7 @@ var express 		= require('express'),
 	methodOverride  = require('method-override'),
 	multer 			= require('multer')
     user 			= require('./models/user'),
-    upload      	= multer({ dest: 'views/campgrounds' });
+    upload      	= multer({ dest: 'public/files' });
 
 	port 			= 3000,
 
@@ -23,6 +23,7 @@ app.set("view engine", "ejs");
 
 // if we use mongo in our localhost
 //mongoose.connect("mongodb://localhost/campuskart");
+mongoose.Promise = global.Promise;
 mongoose.connection.openUri("mongodb://sjv97mhjn:1997@ds119685.mlab.com:19685/health");
 //  if we use mongolab
 // mongoose.connection.openUri("mongodb://sjv97mhjn:1997@ds151004.mlab.com:51004/campuskart");
@@ -37,7 +38,7 @@ app.get("/upload",function(req,res){
 	res.render("file.ejs");
 })
 app.post("/upload",upload.any(),function(req,res,next){
-    console.log(req.files);
+    console.log(req.files[0]);
     // //var name = req.body.name;
     // var image = req.files[0].path.replace("views/campgrounds/","");
     // var desc = req.body.description;
