@@ -24,7 +24,8 @@ router.get("/addreport/:id", routes.views.index.addreport);
 router.post("/addreport/:id",upload.any(),routes.views.index.Addreport);
 
 //Verify Image
-router.get("/verify/:id", routes.views.index.verify);
+router.get("/verify", routes.views.index.verify);
+router.post("/verify", upload.any(), routes.views.index.verifyPost);
 
 
 module.exports = router;

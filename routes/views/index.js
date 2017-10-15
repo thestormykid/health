@@ -111,13 +111,67 @@ module.exports = {
 	})
 
 	},
+
 	verify: function(req,res){
 		res.render("verify.ejs",{id:req.params.id});
 	},
-	Verify:function(req,res){
+
+	
+	verifyPost:function(req,res){
 		//asuming everything in req.body
-		console.log(req.files);
 		var filename = req.files[0].filename; 
-		
+		var str = base64_encode(req.files[0].path);
+
+		var request = require('request');
+
+		var options = {
+		uri: 'https://private-anon-2eba353011-kairos.apiary-proxy.com/recognize',
+		method: 'POST',
+		json: {
+			"gallery_name": "Health",
+			"image": str
+		},
+		headers: {
+			'app_id': '96ba018e',
+			'app_key': '7592d69340f9bc13208667783b76a9e4'
+		}
+		};
+
+		request(options, function (error, response, body) {
+		var maxPercent = 0;
+		var subject_id = "null";
+
+		if (("images" in body) && ("candidates" in body["images"][0]))
+		{
+			var data = body["images"][0]["candidates"];
+
+			data.forEach(obj => {
+			if (obj.confidence > maxPercent)
+			{
+				maxPercent = obj.confidence;
+				subject_id = obj.subject_id;
+			}
+			});
+		}
+
+		if (maxPercent >= 0.5)
+		{
+			res.send({id: subject_id});
+		}
+		else
+		{
+			res.status(404).json({message: "No valid image found"});
+		}
+		});
+
 	}
+}
+
+var fs = require('fs');
+
+function base64_encode(file) {
+	// read binary data
+	var bitmap = fs.readFileSync(file);
+	// convert binary data to base64 encoded string
+	return new Buffer(bitmap).toString('base64');
 }
