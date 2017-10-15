@@ -21,6 +21,7 @@ app.use(methodOverride("_method"));
 
 app.set("view engine", "ejs");
 
+
 // if we use mongo in our localhost
 //mongoose.connect("mongodb://localhost/campuskart");
 mongoose.Promise = global.Promise;

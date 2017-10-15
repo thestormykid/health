@@ -56,7 +56,7 @@ module.exports = {
 				console.log(err);
 			}
 			console.log(result);
-			res.render("report",{reports:result["reports"]});
+			res.render("report",{reports:result["reports"],userid:req.params.id});
 		})
 	},
 
