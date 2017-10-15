@@ -100,7 +100,13 @@
 			</div>
 		</div> -->
 		<h3><b>Prescription Details</b> - </h3>
-		<textarea style="height: 500px;width: 1000px; border-color: black;" name="prescriptionDetails" placeholder="Enter Here"> </textarea>
+
+		<script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
+		<textarea name="prescriptionDetails"></textarea>
+        <script>
+            CKEDITOR.replace( 'prescriptionDetails' );
+        </script>
+
 		<div class="row">
 			<h4 class="col s3"><b>Disease Identified</b> - </h4>
 			<input class="col s5" type="text" name="disease">

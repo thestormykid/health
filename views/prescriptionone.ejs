@@ -106,7 +106,7 @@
                 <p><%=pres.disease%>  - <%=pres.createdAt%><br>
                <%=pres.hospital_name%>
                 </p>
-                <textarea style="height: 100px ;border-color: black"><%=pres.prescriptionDetails%></textarea>
+                <%-pres.prescriptionDetails%>
                 </li>
                 <%}%>
            <%})%>
