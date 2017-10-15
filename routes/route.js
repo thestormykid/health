@@ -17,6 +17,7 @@ router.get("/view.html", routes.views.index.viewstatic);
 //Prescription List:
 router.get("/prescription/:id", routes.views.index.prescription);
 router.get("/report/:id", routes.views.index.report);
+router.get("/prescriptionone/:id1/:id2", routes.views.index.prescriptionone);
 
 //Add Prescrription
 router.get("/addprescription/:id", routes.views.index.addprescription);

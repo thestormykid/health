@@ -49,6 +49,12 @@ module.exports = {
 			res.render("prescription",{prescription:result["prescription"],userid:req.params.id});
 		})
 	},
+	prescriptionone: function(req,res){
+		var id = req.params.id1;
+		user.findOne({aid:id},function(err,result){
+		res.render("prescriptionone",{prescription:result["prescription"],userid:req.params.id1,presid:req.params.id2});
+		})
+	},
 	report: function(req,res){
 			var id = req.params.id;
 			console.log(id);
