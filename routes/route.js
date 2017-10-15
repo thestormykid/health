@@ -12,6 +12,7 @@ router.get("/", routes.views.index.landing);
 router.get("/login",routes.views.index.login);
 router.get("/store", routes.views.index.store);
 router.get("/list", routes.views.index.list);
+router.get("/view.html", routes.views.index.viewstatic);
 
 //Prescription List:
 router.get("/prescription/:id", routes.views.index.prescription);
@@ -24,7 +25,11 @@ router.get("/addreport/:id", routes.views.index.addreport);
 router.post("/addreport/:id",upload.any(),routes.views.index.Addreport);
 
 //Verify Image
-router.get("/verify/:id", routes.views.index.verify);
+router.get("/verify", routes.views.index.verify);
+router.post("/verify", upload.any(), routes.views.index.verifyPost);
 
+router.get("/welcome", routes.views.index.welcome);
+router.get("/loginsignup", routes.views.index.loginsignup);
+router.get("/reports", routes.views.index.reports);
 
 module.exports = router;

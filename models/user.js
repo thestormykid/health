@@ -19,8 +19,11 @@ var userSchema = mongoose.Schema({
 	],
 	reports: [
 		{
-			reportId: String,
+			userId: String,
 			reportName: String,
+			lab_name: String,
+			location: String,
+			doc_link: String,
 			uploadedAt: { type: Date, default: new Date() }
 		}
 	]
