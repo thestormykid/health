@@ -19,7 +19,8 @@ var userSchema = mongoose.Schema({
 	],
 	reports: [
 		{
-			userId: String,
+			userId:String,
+			reportId: String,
 			reportName: String,
 			lab_name: String,
 			location: String,
