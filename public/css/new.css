@@ -365,7 +365,6 @@ input[type="file"] > input[type="button"]::-moz-focus-inner {
 .navbar .navbar-nav > li > a.btn.btn-primary.btn-simple {
   background-color: transparent;
   color: #9c27b0;
-  box-shadow: none;
 }
 .btn.btn-primary.btn-simple:hover, .btn.btn-primary.btn-simple:focus, .btn.btn-primary.btn-simple:active,
 .navbar .navbar-nav > li > a.btn.btn-primary.btn-simple:hover,
@@ -5767,11 +5766,11 @@ select[data-dropdownjs][disabled] + .dropdownjs > input[readonly] {
   bottom: 60px;
 }
 .page-header .container {
-  padding-top: 226px;
+  padding-top: 80px;
   color: #FFFFFF;
 }
 .page-header .title {
-  color: #FFFFFF;
+  color: #000000;
 }
 .page-header.header-small {
   height: 65vh;
@@ -7358,7 +7357,6 @@ select.selectpicker {
 
 .presentation-page .page-header,
 .index-page .page-header {
-  height: 90vh;
   overflow: hidden;
 }
 .presentation-page .brand,
@@ -8107,7 +8105,6 @@ select.selectpicker {
 }
 @media (max-width: 991px) {
   .page-header {
-    height: auto;
     min-height: 60vh;
   }
   .page-header .iframe-container {

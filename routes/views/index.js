@@ -36,7 +36,8 @@ module.exports = {
 			res.render("index");
 	},
 	login : function(req,res){
-	     res.render("landings",{userid:"1",username:"Hanu"});
+		res.redirect("/welcome");
+		//	     res.render("landings",{userid:"1",username:"Hanu"});
    } ,
 	landings: function(req,res){
 		res.render("landings",{userid:"1",username:"Hanu"});
@@ -90,6 +91,14 @@ module.exports = {
 		res.render("addreport.ejs",{id:req.params.id});
 	},
 
+	welcome: function(req,res){
+		res.render("welcome.ejs");
+	},
+
+	loginsignup: function(req,res){
+		res.render("loginsignup.ejs");
+	},
+
 	Addreport:function(req,res){
 		//asuming everything in req.body
 		console.log(req.files);
@@ -112,13 +121,23 @@ module.exports = {
 
 	},
 
+	viewstatic: function(req, res) {
+		res.render("view.ejs");
+	},
+	
 	verify: function(req,res){
-		res.render("verify.ejs",{id:req.params.id});
+		res.render("verify.ejs",{id:req.params.id, error: req.query.error});
 	},
 
-	
+	reports: function(req,res){
+		res.render("reports.ejs");
+	},
+
 	verifyPost:function(req,res){
 		//asuming everything in req.body
+
+		console.log(req.files);
+
 		var filename = req.files[0].filename; 
 		var str = base64_encode(req.files[0].path);
 
@@ -138,30 +157,34 @@ module.exports = {
 		};
 
 		request(options, function (error, response, body) {
-		var maxPercent = 0;
-		var subject_id = "null";
+			var maxPercent = 0;
+			var subject_id = "null";
 
-		if (("images" in body) && ("candidates" in body["images"][0]))
-		{
-			var data = body["images"][0]["candidates"];
+			console.log(body);
 
-			data.forEach(obj => {
-			if (obj.confidence > maxPercent)
+			if (("images" in body) && ("candidates" in body["images"][0]))
 			{
-				maxPercent = obj.confidence;
-				subject_id = obj.subject_id;
-			}
-			});
-		}
+				var data = body["images"][0]["candidates"];
 
-		if (maxPercent >= 0.5)
-		{
-			res.send({id: subject_id});
-		}
-		else
-		{
-			res.status(404).json({message: "No valid image found"});
-		}
+				data.forEach(obj => {
+					if (obj.confidence > maxPercent)
+					{
+						maxPercent = obj.confidence;
+						subject_id = obj.subject_id;
+					}
+				});
+			}
+
+			if (maxPercent >= 0.5)
+			{
+				//res.send({id: subject_id});
+				res.redirect('/list');
+			}
+			else
+			{
+				//res.status(404).json({message: "No valid image found"});
+				res.redirect("/verify?error=No%20Match%20Found!%20Retry%20Again");
+			}
 		});
 
 	}
