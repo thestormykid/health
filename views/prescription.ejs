@@ -1,14 +1,16 @@
 <%include partials/header%>
 <h1>Prescription List</h1>
 <%prescription.forEach(function(pres){ %>
-	        <%=pres.prescriptionId%>
-			<%=pres.doctorId%>
-			<%=pres.doctor_name%>
-			<%=pres.hospital_name%>
-			<%=pres.prescriptionDetails%>
-			<%=pres.createdAt%>
-			<%=pres.disease%>
+			<br>
+	        <%=pres.prescriptionId%><br>
+			<%=pres.doctorId%><br>
+			<%=pres.doctor_name%><br>
+			<%=pres.hospital_name%><br>
+			<%=pres.prescriptionDetails%><br>
+			<%=pres.createdAt%><br>
+			<%=pres.disease%><br>
 
 <%})%>
 
+<a href="/addprescription/<%=userid%>"><button>Add Prescription</button></a>
 <%include partials/footer%>

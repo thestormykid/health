@@ -8,7 +8,6 @@ var routes = {
 }
 
 router.get("/", routes.views.index.landing);
-router.get("/doctors/:id", routes.views.index.doctors)
 
 router.get("/login",routes.views.index.login);
 router.get("/store", routes.views.index.store);

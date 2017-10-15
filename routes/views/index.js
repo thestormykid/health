@@ -20,13 +20,13 @@ module.exports = {
 		res.render("landing");
 	},
 
-	doctors: function(req, res) {
+	addprescription: function(req, res) {
 
 		user.findOne({aid:req.params.id},function(err,result){
 			if(err) throw err;
 			else{
 				console.log(result)
-				res.render("doctors",{user:result}) };
+				res.render("addprescription",{user:result}) };
 		})
 	},
 	list  : function(req,res){
@@ -44,14 +44,14 @@ module.exports = {
 	},
 	prescription: function(req,res){
 		var id = req.params.id;
-		user.findOne({aid:"1"},function(err,result){
-			res.render("prescription",{prescription:result["prescription"]},{userid:req.params.id});
+		user.findOne({aid:id},function(err,result){
+			res.render("prescription",{prescription:result["prescription"],userid:req.params.id});
 		})
 	},
 	report: function(req,res){
 			var id = req.params.id;
 			console.log(id);
-		user.findOne({aid:id},function(err,result){
+		user.findOne({aid:id}).exec(function(err,result){
 			if(err){
 				console.log(err);
 			}
@@ -59,33 +59,31 @@ module.exports = {
 			res.render("report",{reports:result["reports"]});
 		})
 	},
-	addprescription: function(req,res){
-		res.render("addprescription",{userid:req.params.id});
-	},
+
 	Addprescription:function(req,res){
 		//asuming everything in req.body
 		var pres = req.body;
-		res.send(pres);
-	// 	var prescription = {
-	// 		prescriptionId: pres.prescriptionId,
-	// 		doctorId: pres.doctorId,
-	// 		doctor_name: pres.doctor_name,
-	// 		hospital_name: pres.hospital_name,
-	// 		prescriptionDetails: pres.prescriptionDetails,
-	// 		disease : pres.disease,
-	// 	}
-	// user.findOne({aid: req.params.id}).exec(function(err,user){
-	// 	console.log(user);
-	// 	user.prescription.push(prescription);
-	// 	user.save(function(err,user){
-	// 		if(err){
-	// 			throw err;
-	// 		}
-	// 		else{
-	// 			res.redirect("/prescription");
-	// 		}
-	// 	})
-	// })
+		console.log(pres);
+		var prescription = {
+			prescriptionId: pres.prescriptionId,
+			doctorId: pres.doctorId,
+			doctor_name: pres.doctor_name,
+			hospital_name: pres.hospital_name,
+			prescriptionDetails: pres.prescriptionDetails,
+			disease : pres.disease,
+		}
+	user.findOne({aid: req.params.id}).exec(function(err,user){
+		//console.log(user);
+		user.prescription.push(prescription);
+		user.save(function(err,user){
+			if(err){
+				throw err;
+			}
+			else{
+				res.redirect("/prescription/" + req.params.id);
+			}
+		})
+	})
 
 	},
 	addreport: function(req,res){
