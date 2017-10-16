@@ -147,11 +147,11 @@ module.exports = {
 	verifyPost:function(req,res){
 		//asuming everything in req.body
 
-		console.log(req.files);
+		console.log(req.files[0].path);
 
 		var filename = req.files[0].filename; 
 		var str = base64_encode(req.files[0].path);
-
+		console.log(str);
 		var request = require('request');
 
 		var options = {
@@ -189,7 +189,7 @@ module.exports = {
 			if (maxPercent >= 0.5)
 			{
 				//res.send({id: subject_id});
-				res.redirect('/list');
+				res.redirect('/prescription/1');
 			}
 			else
 			{
