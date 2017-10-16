@@ -7,7 +7,7 @@ var express 		= require('express'),
 	request			= require('request'),
 	methodOverride  = require('method-override'),
 	multer 			= require('multer')
-    user 			= require('./models/user'),
+    place 			= require('./models/user'),
     upload      	= multer({ dest: 'public/files' });
 
 	port 			= 3000,

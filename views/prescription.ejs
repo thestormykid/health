@@ -51,13 +51,13 @@
 						</a>
 					</li>
 					<li>
-						<a href="/list">
+						<a href="/prescription/1">
 							<i class="fa fa-user-o fa-2x"></i>
 							Prescriptions
 						</a>
 					</li>
 					<li>
-						<a href="/reports">
+						<a href="/report/1">
 							<i class="fa fa-envelope-open-o fa-2x"></i>
 							Reports
 						</a>
@@ -99,15 +99,18 @@
             	<%prescription.forEach(function(pres){ %>
                 <li class="collection-item avatar">
                 <i class="material-icons circle">folder</i>
-                <span class="title"><%=pres.doctorId%> : <%=pres.doctor_name%><br></span>
+                <span class="title"><%=pres.doctor_name%><br></span>
                 <p><%=pres.disease%>  - <%=pres.createdAt%><br>
                <%=pres.hospital_name%>
                 </p>
                 <a href="/prescriptionone/<%=userid%>/<%=pres._id%>" class="secondary-content"><i class="material-icons">send</i></a>
                 </li>
-           <%})%>
-           <a href="/addprescription/<%=userid%>"><button>Add Prescription</button></a>
+          	 <%})%>
             </ul>
+
+           <a href="/addprescription/<%=userid%>">
+				<button style="margin-top:-5px;"  class="col s12 btn waves-effect waves-light" type="submit">Add Prescription</button>
+			</a>
 
 
             </div>

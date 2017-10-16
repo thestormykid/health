@@ -52,13 +52,13 @@
 						</a>
 					</li>
 					<li>
-						<a href="/list">
+						<a href="/prescription/1">
 							<i class="fa fa-user-o fa-2x"></i>
 							Prescriptions
 						</a>
 					</li>
 					<li>
-						<a href="/reports">
+						<a href="/report/1">
 							<i class="fa fa-envelope-open-o fa-2x"></i>
 							Reports
 						</a>
@@ -109,8 +109,12 @@
                 <a href="<%=report.doc_link%>" class="secondary-content"><i class="material-icons">send</i></a>
                 </li>
                 <%})%>
-                <a href="/addreport/<%=userid%>"><button>Add Report</button></a>
             </ul>
+
+           <a href="/addreport/<%=userid%>">
+				<button style="margin-top:-5px;"  class="col s12 btn waves-effect waves-light" type="submit">Add Report</button>
+			</a>
+
 
             </div>
         </div>
