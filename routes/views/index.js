@@ -1,4 +1,4 @@
-var User = require('../../models/user');
+var user = require('../../models/user');
 
 module.exports = {
 
@@ -151,7 +151,7 @@ module.exports = {
 
 		var filename = req.files[0].filename; 
 		var str = base64_encode(req.files[0].path);
-		console.log(str);
+		//console.log(str);
 		var request = require('request');
 
 		var options = {
@@ -206,6 +206,12 @@ var fs = require('fs');
 function base64_encode(file) {
 	// read binary data
 	var bitmap = fs.readFileSync(file);
+	// console.log("===============BITMAP===================")
+	// console.log(bitmap);
+	// console.log("===============BUFFER===================")
+	// console.log(Buffer(bitmap).toString('base64'));
+	// console.log("===============BUFFER===================")
+
 	// convert binary data to base64 encoded string
 	return new Buffer(bitmap).toString('base64');
 }
