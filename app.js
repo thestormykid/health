@@ -1,17 +1,15 @@
-var express 		= require('express'),
+var 	express 		= require('express'),
 	app				= express(),
 	bodyparser 		= require('body-parser'),
 	bcrypt			= require('bcrypt-nodejs'),
 	session			= require('express-session'),
 	mongoose		= require('mongoose'),
 	request			= require('request'),
-	methodOverride  = require('method-override'),
+	methodOverride  	= require('method-override'),
 	multer 			= require('multer')
-    place 			= require('./models/user'),
-    upload      	= multer({ dest: 'public/files' });
-
+    	place 			= require('./models/user'),
+    	upload      		= multer({ dest: 'public/files' });
 	port 			= 3000,
-
 	routes 			= require('./routes/route')
 
 app.use(bodyparser.json());
